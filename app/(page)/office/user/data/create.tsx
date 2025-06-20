@@ -48,9 +48,9 @@ export default function UserCreate(props: Readonly<UserCreateProps>) {
         <Modal title="Tambah User" closeModal={props.closeModal} className="max-w-lg">
             <form onSubmit={submitCreateUser}>
                 <div className="my-4 flex flex-col gap-4">
-                    <InputLabel label="Nama" name={INPUT_NAME} type="text" placeHolder="Masukkan nama" isRequired={true} />
-                    <InputLabel label="Username" name={INPUT_EMAIL} type="text" placeHolder="Masukkan username" isRequired={true} />
-                    <InputLabel label="Password" name={INPUT_PASSWORD} type="password" placeHolder="••••••••" isRequired={true} />
+                    <InputLabel label="Nama" name={INPUT_NAME} type="text" placeHolder="Masukkan nama" required={true} />
+                    <InputLabel label="Username" name={INPUT_EMAIL} type="text" placeHolder="Masukkan username" required={true} />
+                    <InputLabel label="Password" name={INPUT_PASSWORD} type="password" placeHolder="••••••••" required={true} />
                     <InputSelectLabel label="Role" name={INPUT_ROLE_ID} options={roleOptions} required />
                 </div>
                 <div className="flex justify-end">{isLoading ? <ButtonLoadingSave /> : <ButtonSave />}</div>

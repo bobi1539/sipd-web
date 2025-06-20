@@ -52,3 +52,4 @@ export const INPUT_IS_MARRIED: string = "is-married";
 export const INPUT_TOTAL_CHILD: string = "total-child";
 export const INPUT_PRICE: string = "input-price";
 export const INPUT_QUANTITY: string = "input-quantity";
+export const INPUT_TOTAL: string = "input-total";

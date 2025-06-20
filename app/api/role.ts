@@ -6,7 +6,7 @@ import { Search } from "../dto/dto/search";
 import { RoleRequest } from "../dto/request/role-request";
 import { PaginationResponse } from "../dto/response/pagination-response";
 import { RoleResponse } from "../dto/response/role-response";
-import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest } from "./helper";
+import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequestWithId } from "./helper";
 
 export const apiRoleFindAllPagination = async (search: Search, pagination: Pagination): Promise<PaginationResponse<RoleResponse>> => {
     const headers = await createHeadersWithSession();
@@ -36,7 +36,7 @@ export const apiRoleCreate = async (request: RoleRequest): Promise<RoleResponse>
 
 export const apiRoleUpdate = async (id: number, request: RoleRequest): Promise<RoleResponse> => {
     const headers = await createHeadersWithSession();
-    const response = await makePutRequest(id, BE_ROLE, headers, request);
+    const response = await makePutRequestWithId(id, BE_ROLE, headers, request);
     return await handleResponse(response);
 };
 

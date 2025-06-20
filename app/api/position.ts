@@ -6,7 +6,7 @@ import { Search } from "../dto/dto/search";
 import { PositionRequest } from "../dto/request/position-request";
 import { PaginationResponse } from "../dto/response/pagination-response";
 import { PositionResponse } from "../dto/response/position-response";
-import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest } from "./helper";
+import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequestWithId } from "./helper";
 
 export const apiPositionFindAllPagination = async (search: Search, pagination: Pagination): Promise<PaginationResponse<PositionResponse>> => {
     const headers = await createHeadersWithSession();
@@ -36,7 +36,7 @@ export const apiPositionCreate = async (request: PositionRequest): Promise<Posit
 
 export const apiPositionUpdate = async (id: number, request: PositionRequest): Promise<PositionResponse> => {
     const headers = await createHeadersWithSession();
-    const response = await makePutRequest(id, BE_POSITION, headers, request);
+    const response = await makePutRequestWithId(id, BE_POSITION, headers, request);
     return await handleResponse(response);
 };
 

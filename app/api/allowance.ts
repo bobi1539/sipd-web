@@ -7,7 +7,7 @@ import { AllowanceRequest } from "../dto/request/allowance-request";
 import { AllowanceResponse } from "../dto/response/allowance-response";
 import { PaginationResponse } from "../dto/response/pagination-response";
 import { AllowanceSearch } from "../dto/search/allowance-search";
-import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest } from "./helper";
+import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequestWithId } from "./helper";
 
 export const apiAllowanceFindAllPagination = async (search: AllowanceSearch, pagination: Pagination): Promise<PaginationResponse<AllowanceResponse>> => {
     const url = buildAllowanceUrlFindAll(BE_ALLOWANCE, search, pagination);
@@ -38,7 +38,7 @@ export const apiAllowanceCreate = async (request: AllowanceRequest): Promise<All
 
 export const apiAllowanceUpdate = async (id: number, request: AllowanceRequest): Promise<AllowanceResponse> => {
     const headers = await createHeadersWithSession();
-    const response = await makePutRequest(id, BE_ALLOWANCE, headers, request);
+    const response = await makePutRequestWithId(id, BE_ALLOWANCE, headers, request);
     return await handleResponse(response);
 };
 

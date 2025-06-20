@@ -49,15 +49,28 @@ export const makePostRequest = async <T>(url: string, headers: Headers, body: T)
     return response;
 };
 
-export const makePutRequest = async <T>(id: number, url: string, headers: Headers, body: T): Promise<Response> => {
-    const response = await fetch(url + "/id/" + id, {
+export const makePutRequest = async <T>(url: string, headers: Headers, body: T): Promise<Response> => {
+    const response = await fetch(url, {
         method: "PUT",
         headers: headers,
         body: createRequestBody(body),
     });
     if (response.status === HTTP_CODE_UNAUTHORIZED) {
         await handleTokenExpired();
-        return makePutRequest(id, url, await createHeadersWithSession(), body);
+        return makePutRequest(url, await createHeadersWithSession(), body);
+    }
+    return response;
+};
+
+export const makePutRequestWithId = async <T>(id: number, url: string, headers: Headers, body: T): Promise<Response> => {
+    const response = await fetch(url + "/" + id, {
+        method: "PUT",
+        headers: headers,
+        body: createRequestBody(body),
+    });
+    if (response.status === HTTP_CODE_UNAUTHORIZED) {
+        await handleTokenExpired();
+        return makePutRequestWithId(id, url, await createHeadersWithSession(), body);
     }
     return response;
 };

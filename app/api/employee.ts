@@ -6,7 +6,7 @@ import { Search } from "../dto/dto/search";
 import { EmployeeRequest } from "../dto/request/employee-request";
 import { EmployeeResponse } from "../dto/response/employee-response";
 import { PaginationResponse } from "../dto/response/pagination-response";
-import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest } from "./helper";
+import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequestWithId } from "./helper";
 
 export const apiEmployeeFindAllPagination = async (search: Search, pagination: Pagination): Promise<PaginationResponse<EmployeeResponse>> => {
     const headers = await createHeadersWithSession();
@@ -36,7 +36,7 @@ export const apiEmployeeCreate = async (request: EmployeeRequest): Promise<Emplo
 
 export const apiEmployeeUpdate = async (id: number, request: EmployeeRequest): Promise<EmployeeResponse> => {
     const headers = await createHeadersWithSession();
-    const response = await makePutRequest(id, BE_EMPLOYEE, headers, request);
+    const response = await makePutRequestWithId(id, BE_EMPLOYEE, headers, request);
     return await handleResponse(response);
 };
 

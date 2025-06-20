@@ -7,7 +7,7 @@ import { BasicSalaryRequest } from "../dto/request/basic-salary-request";
 import { BasicSalaryResponse } from "../dto/response/basic-salary-response";
 import { PaginationResponse } from "../dto/response/pagination-response";
 import { BasicSalarySearch } from "../dto/search/basic-salary-search";
-import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest } from "./helper";
+import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequestWithId } from "./helper";
 
 export const apiBasicSalaryFindAllPagination = async (search: BasicSalarySearch, pagination: Pagination): Promise<PaginationResponse<BasicSalaryResponse>> => {
     const url = buildBasicSalaryUrlFindAll(BE_BASIC_SALARY, search, pagination);
@@ -38,7 +38,7 @@ export const apiBasicSalaryCreate = async (request: BasicSalaryRequest): Promise
 
 export const apiBasicSalaryUpdate = async (id: number, request: BasicSalaryRequest): Promise<BasicSalaryResponse> => {
     const headers = await createHeadersWithSession();
-    const response = await makePutRequest(id, BE_BASIC_SALARY, headers, request);
+    const response = await makePutRequestWithId(id, BE_BASIC_SALARY, headers, request);
     return await handleResponse(response);
 };
 

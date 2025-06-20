@@ -7,7 +7,7 @@ import { UserCreateRequest } from "../dto/request/user-create-request";
 import { UserUpdateRequest } from "../dto/request/user-update-request";
 import { PaginationResponse } from "../dto/response/pagination-response";
 import { UserResponse } from "../dto/response/user-response";
-import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest } from "./helper";
+import { buildUrlFindAll, createHeadersWithSession, handleResponse, makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequestWithId } from "./helper";
 
 export const apiUserFindAllPagination = async (search: Search, pagination: Pagination): Promise<PaginationResponse<UserResponse>> => {
     const headers = await createHeadersWithSession();
@@ -37,7 +37,7 @@ export const apiUserCreate = async (request: UserCreateRequest): Promise<UserRes
 
 export const apiUserUpdate = async (id: number, request: UserUpdateRequest): Promise<UserResponse> => {
     const headers = await createHeadersWithSession();
-    const response = await makePutRequest(id, BE_USER, headers, request);
+    const response = await makePutRequestWithId(id, BE_USER, headers, request);
     return await handleResponse(response);
 };
 

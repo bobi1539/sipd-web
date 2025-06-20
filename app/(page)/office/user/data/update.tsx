@@ -65,8 +65,8 @@ export default function UserUpdate(props: Readonly<UserUpdateProps>) {
         <Modal title="Ubah User" closeModal={props.closeModal} className="max-w-lg">
             <form onSubmit={submitUpdateUser}>
                 <div className="my-4 flex flex-col gap-4">
-                    <InputLabel value={name} onChange={(e) => setName(e.target.value)} label="Nama" name={INPUT_NAME} type="text" placeHolder="Masukkan nama" isRequired={true} />
-                    <InputLabel value={username} onChange={(e) => setUsername(e.target.value)} label="Username" name={INPUT_EMAIL} type="text" placeHolder="Masukkan username" isRequired={true} />
+                    <InputLabel value={name} onChange={(e) => setName(e.target.value)} label="Nama" name={INPUT_NAME} type="text" placeHolder="Masukkan nama" required={true} />
+                    <InputLabel value={username} onChange={(e) => setUsername(e.target.value)} label="Username" name={INPUT_EMAIL} type="text" placeHolder="Masukkan username" required={true} />
                     <InputSelectLabel label="Role" name={INPUT_ROLE_ID} option={roleOption} options={roleOptions} required />
                 </div>
                 <div className="flex justify-end">{isLoading ? <ButtonLoadingSave /> : <ButtonSave />}</div>

@@ -67,8 +67,8 @@ export default function Login() {
                         </div>
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl mb-6">Masuk ke akun anda</h1>
                         <form onSubmit={submitLogin} className="flex flex-col gap-4">
-                            <InputLabel label="Email" name={INPUT_EMAIL} type="email" isRequired={true} />
-                            <InputLabel label="Password" name={INPUT_PASSWORD} type="password" placeHolder="••••••••" isRequired={true} />
+                            <InputLabel label="Email" name={INPUT_EMAIL} type="email" required={true} />
+                            <InputLabel label="Password" name={INPUT_PASSWORD} type="password" placeHolder="••••••••" required={true} />
                             {isLoading ? <ButtonLoading text="Proses Login..." className="mt-2" /> : <ButtonIcon type="submit" icon="fa-solid fa-right-to-bracket" text="Masuk" className="mt-2 py-2.5" />}
                         </form>
                     </div>

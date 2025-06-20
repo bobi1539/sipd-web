@@ -29,7 +29,7 @@ export default function RoleCreateOrUpdate(props: Readonly<RoleCreateOrUpdatePro
         <Modal title={props.title} closeModal={props.closeModal} className="max-w-lg">
             <form onSubmit={props.submit}>
                 <div className="my-4">
-                    <InputLabel value={name} onChange={(e) => setName(e.target.value)} label="Nama Role" name={INPUT_NAME} type="text" placeHolder="Masukkan nama role" isRequired={true} />
+                    <InputLabel value={name} onChange={(e) => setName(e.target.value)} label="Nama Role" name={INPUT_NAME} type="text" placeHolder="Masukkan nama role" required={true} />
                 </div>
                 <div className="flex justify-end">{props.isLoading ? <ButtonLoadingSave /> : <ButtonSave />}</div>
             </form>
