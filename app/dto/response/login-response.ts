@@ -1,4 +1,4 @@
 export interface LoginResponse {
-    jwtToken: string;
+    jwt: string;
     refreshToken: string;
 }

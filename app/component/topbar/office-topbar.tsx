@@ -69,7 +69,7 @@ export default function OfficeTopbar(props: Readonly<OfficeTopbarProps>) {
                     </button>
                     <Link href={FE_DASHBOARD} className="flex items-center">
                         <Image key={"logo"} className="w-auto h-9 mr-3" src={urlLogo} alt="SIPD Logo" width={100} height={36} priority unoptimized />
-                        <span className="hidden md:block self-center text-primary-800 text-xl font-semibold whitespace-nowrap">Penggajian</span>
+                        <span className="hidden md:block self-center text-primary-800 text-xl font-semibold whitespace-nowrap">SIPD</span>
                     </Link>
                 </div>
                 <div className="flex items-center gap-1">

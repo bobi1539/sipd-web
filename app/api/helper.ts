@@ -103,7 +103,7 @@ export const createRequestBody = <T>(body: T): string => {
 export const handleTokenExpired = async (): Promise<void> => {
     try {
         const loginResponse = await apiLoginRefreshToken();
-        setCookieLogin(loginResponse.jwtToken, loginResponse.refreshToken);
+        setCookieLogin(loginResponse.jwt, loginResponse.refreshToken);
     } catch (error) {
         console.error(error);
         removeCookieLogin();

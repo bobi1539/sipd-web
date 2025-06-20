@@ -59,36 +59,7 @@ export default function OfficeSidebar(props: Readonly<OfficeSidebarProps>) {
                     },
                 ],
             },
-            {
-                id: 3,
-                name: "Pengaturan SDM",
-                route: "/office/setting-hr",
-                icon: "fa-solid fa-tools",
-                sequence: 3,
-                subMenus: [
-                    {
-                        id: 1,
-                        name: "Jabatan",
-                        route: "/office/setting-hr/position",
-                        sequence: 1,
-                        menuId: 3,
-                    },
-                    {
-                        id: 2,
-                        name: "Jenis Tunjangan",
-                        route: "/office/setting-hr/allowance-type",
-                        sequence: 2,
-                        menuId: 3,
-                    },
-                    {
-                        id: 3,
-                        name: "Karyawan",
-                        route: "/office/setting-hr/employee",
-                        sequence: 3,
-                        menuId: 3,
-                    },
-                ],
-            },
+            
         ];
         setMenus(response);
     };

@@ -7,7 +7,7 @@ import ButtonSave from "@/app/component/button/button-save";
 import InputLabel from "@/app/component/input/input-label";
 import InputSelectLabel from "@/app/component/input/input-select-label";
 import Modal from "@/app/component/modal/modal";
-import { INPUT_NAME, INPUT_ROLE_ID, INPUT_USERNAME } from "@/app/constant/general";
+import { INPUT_NAME, INPUT_ROLE_ID, INPUT_EMAIL } from "@/app/constant/general";
 import { Option } from "@/app/dto/dto/input-select-option";
 import { buildUserUpdateRequest } from "@/app/dto/request/user-update-request";
 import { showSuccessDialog } from "@/app/util/sweet-alert";
@@ -66,7 +66,7 @@ export default function UserUpdate(props: Readonly<UserUpdateProps>) {
             <form onSubmit={submitUpdateUser}>
                 <div className="my-4 flex flex-col gap-4">
                     <InputLabel value={name} onChange={(e) => setName(e.target.value)} label="Nama" name={INPUT_NAME} type="text" placeHolder="Masukkan nama" isRequired={true} />
-                    <InputLabel value={username} onChange={(e) => setUsername(e.target.value)} label="Username" name={INPUT_USERNAME} type="text" placeHolder="Masukkan username" isRequired={true} />
+                    <InputLabel value={username} onChange={(e) => setUsername(e.target.value)} label="Username" name={INPUT_EMAIL} type="text" placeHolder="Masukkan username" isRequired={true} />
                     <InputSelectLabel label="Role" name={INPUT_ROLE_ID} option={roleOption} options={roleOptions} required />
                 </div>
                 <div className="flex justify-end">{isLoading ? <ButtonLoadingSave /> : <ButtonSave />}</div>
