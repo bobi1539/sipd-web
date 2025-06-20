@@ -1,5 +1,4 @@
-"use client";
-import { apiRoleDelete } from "@/app/api/role";
+"use client";;
 import ButtonIcon from "@/app/component/button/button-icon";
 import InputSearch from "@/app/component/input/input-search";
 import LoadingTable from "@/app/component/table/loading-table";
@@ -18,7 +17,7 @@ import DropdownDelete from "@/app/component/dropdown/dropdown-delete";
 import { formatNumber, getItemNumber } from "@/app/util/helper";
 import { CustomTableHead } from "@/app/dto/dto/custom-table-head";
 import { BudgetResponse } from "@/app/dto/response/budget-response";
-import { apiFindAllPaginationBudget } from "@/app/api/budget";
+import { apiDeleteBudget, apiFindAllPaginationBudget } from "@/app/api/budget";
 import { DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from "@/app/constant/general";
 import { formatNumberToRupiah } from "@/app/helper/currency-helper";
 import CreateBudget from "./create";
@@ -56,7 +55,7 @@ export default function Budget() {
         const result = await showConfirmDialog(SURE_TO_DELETE);
         if (result.isConfirmed) {
             try {
-                await apiRoleDelete(id);
+                await apiDeleteBudget(id);
                 await showSuccessDialog();
             } catch (error) {
                 console.error(error);
@@ -97,7 +96,7 @@ export default function Budget() {
                         <LoadingTable colSpan={tableHeads.length} />
                     ) : (
                         budgets?.content.map((budget, index) => (
-                            <tr key={budget.id} className="border-b text-center">
+                            <tr key={budget.id} className={`border-b text-center ${budget.deleted ? "line-through text-red-700": ""}`}>
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     {getItemNumber(currentPage, index)}
                                 </td>

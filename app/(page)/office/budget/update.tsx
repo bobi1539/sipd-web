@@ -13,16 +13,20 @@ interface UpdateBudgetProps {
 }
 
 export default function UpdateBudget(props: Readonly<UpdateBudgetProps>) {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isFormLoading, setIsFormLoading] = useState<boolean>(false);
+    const [isSaveLoading, setIsSaveLoading] = useState<boolean>(false);
     const [budget, setBudget] = useState<BudgetResponse>();
 
     useEffect(() => {
-        apiFindByIdBudget(props.id).then((response) => setBudget(response));
+        setIsFormLoading(true);
+        apiFindByIdBudget(props.id)
+            .then((response) => setBudget(response))
+            .finally(() => setIsFormLoading(false));
     }, [props.id]);
 
     const submitUpdateBudget = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         try {
-            setIsLoading(true);
+            setIsSaveLoading(true);
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
             const request = buildBudgetRequest(formData);
@@ -33,9 +37,9 @@ export default function UpdateBudget(props: Readonly<UpdateBudgetProps>) {
         } catch (error) {
             console.error(error);
         } finally {
-            setIsLoading(false);
+            setIsSaveLoading(false);
         }
     };
 
-    return <CreateOrUpdateBudget isLoading={isLoading} submit={submitUpdateBudget} closeModal={props.closeModal} title="Ubah Data Anggaran" budget={budget} />;
+    return <CreateOrUpdateBudget isFormLoading={isFormLoading} isSaveLoading={isSaveLoading} submit={submitUpdateBudget} closeModal={props.closeModal} title="Ubah Data Anggaran" budget={budget} />;
 }

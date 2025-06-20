@@ -89,7 +89,7 @@ export const makePutRequestWithoutId = async <T>(url: string, headers: Headers, 
 };
 
 export const makeDeleteRequest = async (id: number, url: string, headers: Headers): Promise<Response> => {
-    const response = await fetch(url + "/id/" + id, {
+    const response = await fetch(url + "/" + id, {
         method: "DELETE",
         headers: headers,
     });

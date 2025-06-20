@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { showSuccessDialog } from "@/app/util/sweet-alert";
 import { useState } from "react";
 import CreateOrUpdateBudget from "./create-or-update";
@@ -30,5 +30,5 @@ export default function CreateBudget(props: Readonly<CreateBudgetProps>) {
         }
     };
 
-    return <CreateOrUpdateBudget isLoading={isLoading} submit={submitCreateBudget} closeModal={props.closeModal} title="Tambah Data Anggaran" />;
+    return <CreateOrUpdateBudget isFormLoading={false} isSaveLoading={isLoading} submit={submitCreateBudget} closeModal={props.closeModal} title="Tambah Data Anggaran" />;
 }
