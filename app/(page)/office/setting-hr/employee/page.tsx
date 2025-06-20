@@ -86,7 +86,7 @@ export default function Employee() {
                     {isLoading ? (
                         <LoadingTable colSpan={tableHeads.length} />
                     ) : (
-                        employeePages?.data.map((employee, index) => (
+                        employeePages?.content.map((employee, index) => (
                             <tr key={employee.id} className="border-b text-center">
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     {getItemNumber(currentPage, index)}

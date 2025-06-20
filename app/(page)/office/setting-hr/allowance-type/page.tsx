@@ -85,7 +85,7 @@ export default function AllowanceType() {
                     {isLoading ? (
                         <LoadingTable colSpan={tableHeads.length} />
                     ) : (
-                        allowanceTypePages?.data.map((allowanceType, index) => (
+                        allowanceTypePages?.content.map((allowanceType, index) => (
                             <tr key={allowanceType.id} className="border-b text-center">
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     {getItemNumber(currentPage, index)}

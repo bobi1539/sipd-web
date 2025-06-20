@@ -106,7 +106,7 @@ export default function Position() {
                     {isLoading ? (
                         <LoadingTable colSpan={tableHeads.length} />
                     ) : (
-                        positionPages?.data.map((position, index) => (
+                        positionPages?.content.map((position, index) => (
                             <tr key={position.id} className="border-b text-center">
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     {getItemNumber(currentPage, index)}

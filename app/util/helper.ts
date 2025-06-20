@@ -1,4 +1,4 @@
-import { DEFAULT_PAGE_SIZE } from "../constant/general";
+import { DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from "../constant/general";
 
 export const capitalize = (text: string): string => {
     if (!text) return "";
@@ -6,7 +6,7 @@ export const capitalize = (text: string): string => {
 };
 
 export const getItemNumber = (currentPage: number, index: number): number => {
-    return (currentPage - 1) * DEFAULT_PAGE_SIZE + index + 1;
+    return (currentPage - DEFAULT_PAGE_NUMBER) * DEFAULT_PAGE_SIZE + index + 1;
 };
 
 export const formatNumber = (value: number): string => {

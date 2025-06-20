@@ -1,6 +1,6 @@
 "use client";
 
-import { COOKIE_JWT_TOKEN, HTTP_CODE_UNAUTHORIZED, PAGE_NUMBER, PAGE_SIZE, SEARCH } from "../constant/general";
+import { COOKIE_JWT_TOKEN, HTTP_CODE_UNAUTHORIZED, PAGE, PAGE_NUMBER, PAGE_SIZE, SEARCH, SIZE, VALUE } from "../constant/general";
 import { SESSION_EXPIRED } from "../constant/message";
 import { Pagination } from "../dto/dto/pagination";
 import { Search } from "../dto/dto/search";
@@ -123,4 +123,18 @@ export const buildUrlFindAll = (url: string, search: Search, pagination?: Pagina
         urlWithParam.searchParams.append(PAGE_SIZE, pagination.pageSize.toString());
     }
     return urlWithParam.toString();
+};
+
+export const getUrlFindAll = (endpoint: string, search: Search): string => {
+    const url = new URL(endpoint);
+    if (search?.value) {
+        url.searchParams.append(VALUE, search.value);
+    }
+    if (search?.page) {
+        url.searchParams.append(PAGE, search.page.toString());
+    }
+    if (search?.size) {
+        url.searchParams.append(SIZE, search.size.toString());
+    }
+    return url.toString();
 };

@@ -1,6 +1,5 @@
 "use client";
-
-import { apiRoleDelete, apiRoleFindAllPagination } from "@/app/api/role";
+import { apiRoleDelete } from "@/app/api/role";
 import ButtonIcon from "@/app/component/button/button-icon";
 import InputSearch from "@/app/component/input/input-search";
 import LoadingTable from "@/app/component/table/loading-table";
@@ -8,10 +7,8 @@ import CustomTable from "@/app/component/table/custom-table";
 import ContentSearch from "@/app/component/text/content-search";
 import ContentTitle from "@/app/component/text/content-title";
 import { SURE_TO_DELETE } from "@/app/constant/message";
-import { paginationDefault } from "@/app/dto/dto/pagination";
 import { buildSearch } from "@/app/dto/dto/search";
 import { PaginationResponse } from "@/app/dto/response/pagination-response";
-import { RoleResponse } from "@/app/dto/response/role-response";
 import { showConfirmDialog, showSuccessDialog } from "@/app/util/sweet-alert";
 import { useCallback, useEffect, useState } from "react";
 import FooterTable from "@/app/component/table/footer-table";
@@ -19,28 +16,28 @@ import CustomDropdown from "@/app/component/dropdown/custom-dropdown";
 import DropdownEdit from "@/app/component/dropdown/dropdown-edit";
 import DropdownDelete from "@/app/component/dropdown/dropdown-delete";
 import { getItemNumber } from "@/app/util/helper";
-import RoleCreate from "./create";
-import RoleUpdate from "./update";
 import { CustomTableHead } from "@/app/dto/dto/custom-table-head";
+import { BudgetResponse } from "@/app/dto/response/budget-response";
+import { apiBudgetFindAllPagination } from "@/app/api/budget";
+import { DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from "@/app/constant/general";
 
-export default function Role() {
-    const [rolePages, setRolePages] = useState<PaginationResponse<RoleResponse>>();
+export default function Budget() {
+    const [budgets, setBudgets] = useState<PaginationResponse<BudgetResponse>>();
     const [isModalCreateOpen, setIsModalCreateOpen] = useState<boolean>(false);
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState<boolean>(false);
-    const [roleIdUpdate, setRoleIdUpdate] = useState<number>(0);
     const [searchValue, setSearchValue] = useState<string>("");
-    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentPage, setCurrentPage] = useState<number>(DEFAULT_PAGE_NUMBER);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const fetchApiRoleFindAllPagination = useCallback(async (): Promise<void> => {
+    const fetchApiBudgetFindAllPagination = useCallback(async (): Promise<void> => {
         setIsLoading(true);
-        await apiRoleFindAllPagination(buildSearch(searchValue), paginationDefault(currentPage)).then((response) => setRolePages(response));
+        await apiBudgetFindAllPagination(buildSearch(searchValue, null, currentPage, DEFAULT_PAGE_SIZE)).then((response) => setBudgets(response));
         setIsLoading(false);
     }, [currentPage, searchValue]);
 
     useEffect(() => {
-        fetchApiRoleFindAllPagination();
-    }, [fetchApiRoleFindAllPagination]);
+        fetchApiBudgetFindAllPagination();
+    }, [fetchApiBudgetFindAllPagination]);
 
     const handlePageChange = (page: number): void => {
         setCurrentPage(page);
@@ -48,7 +45,7 @@ export default function Role() {
 
     const handleEditRole = (id: number): void => {
         setIsModalUpdateOpen(!isModalUpdateOpen);
-        setRoleIdUpdate(id);
+        console.log(id)
     };
 
     const handleDeleteRole = async (id: number): Promise<void> => {
@@ -60,43 +57,63 @@ export default function Role() {
             } catch (error) {
                 console.error(error);
             } finally {
-                await fetchApiRoleFindAllPagination();
+                await fetchApiBudgetFindAllPagination();
             }
         }
     };
     const tableHeads: CustomTableHead[] = [
         { name: "no", className: "text-center" },
-        { name: "nama role", className: "text-left pl-2.5" },
+        { name: "nama anggaran", className: "text-left" },
+        { name: "harga satuan", className: "text-left" },
+        { name: "jumlah", className: "text-left" },
+        { name: "total", className: "text-left" },
+        { name: "digunakan", className: "text-left" },
+        { name: "sisa", className: "text-right" },
         { name: "aksi", className: "text-center" },
     ];
 
     return (
         <div>
-            <ContentTitle title="User Role" />
+            <ContentTitle title="Data Anggaran" />
             <section className="bg-white relative shadow-md sm:rounded-lg overflow-hidden pb-5">
                 <ContentSearch>
                     <InputSearch onChange={(e) => setSearchValue(e.target.value)} />
                     <div className="flex justify-end">
-                        <ButtonIcon onClick={() => setIsModalCreateOpen(!isModalCreateOpen)} type="button" icon="fa-solid fa-plus" text="Tambah Role" className="w-full md:w-auto" />
+                        <ButtonIcon onClick={() => setIsModalCreateOpen(!isModalCreateOpen)} type="button" icon="fa-solid fa-plus" text="Tambah Data Anggaran" className="w-full md:w-auto" />
                     </div>
                 </ContentSearch>
                 <CustomTable heads={tableHeads}>
                     {isLoading ? (
                         <LoadingTable colSpan={tableHeads.length} />
                     ) : (
-                        rolePages?.content.map((role, index) => (
-                            <tr key={role.id} className="border-b text-center">
+                        budgets?.content.map((budget, index) => (
+                            <tr key={budget.id} className="border-b text-center">
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     {getItemNumber(currentPage, index)}
                                 </td>
                                 <td scope="row" className="px-2.5 py-2 break-words text-left whitespace-nowrap">
-                                    {role.name}
+                                    {budget.name}
+                                </td>
+                                <td scope="row" className="px-2.5 py-2 break-words text-left whitespace-nowrap">
+                                    {budget.price}
+                                </td>
+                                <td scope="row" className="px-2.5 py-2 break-words text-left whitespace-nowrap">
+                                    {budget.quantity}
+                                </td>
+                                <td scope="row" className="px-2.5 py-2 break-words text-left whitespace-nowrap">
+                                    {budget.total}
+                                </td>
+                                <td scope="row" className="px-2.5 py-2 break-words text-left whitespace-nowrap text-red-700">
+                                    {budget.used}
+                                </td>
+                                <td scope="row" className="px-2.5 py-2 break-words text-right whitespace-nowrap text-green-700">
+                                    {budget.remaining}
                                 </td>
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     <CustomDropdown>
                                         <>
-                                            <DropdownEdit onClick={() => handleEditRole(role.id)} />
-                                            <DropdownDelete onClick={() => handleDeleteRole(role.id)} />
+                                            <DropdownEdit onClick={() => handleEditRole(budget.id)} />
+                                            <DropdownDelete onClick={() => handleDeleteRole(budget.id)} />
                                         </>
                                     </CustomDropdown>
                                 </td>
@@ -104,9 +121,7 @@ export default function Role() {
                         ))
                     )}
                 </CustomTable>
-                <FooterTable totalItem={rolePages?.totalItem ?? 0} totalPage={rolePages?.totalPage ?? 0} handlePageChange={handlePageChange} />
-                {isModalCreateOpen && <RoleCreate closeModal={() => setIsModalCreateOpen(false)} fetchApiRoleFindAllPagination={fetchApiRoleFindAllPagination} />}
-                {isModalUpdateOpen && <RoleUpdate id={roleIdUpdate} closeModal={() => setIsModalUpdateOpen(false)} fetchApiRoleFindAllPagination={fetchApiRoleFindAllPagination} />}
+                <FooterTable totalItem={budgets?.totalItem ?? 0} totalPage={budgets?.totalPage ?? 0} handlePageChange={handlePageChange} />
             </section>
         </div>
     );

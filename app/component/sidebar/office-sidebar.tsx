@@ -1,5 +1,6 @@
 "use client";
 
+import { FE_BUDGET } from "@/app/constant/endpoint-fe";
 import { MenuResponse } from "@/app/dto/response/menu-response";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -59,7 +60,14 @@ export default function OfficeSidebar(props: Readonly<OfficeSidebarProps>) {
                     },
                 ],
             },
-            
+            {
+                id: 3,
+                name: "Anggaran",
+                route: FE_BUDGET,
+                icon: "fa-solid fa-gear",
+                sequence: 1,
+                subMenus: [],
+            },
         ];
         setMenus(response);
     };

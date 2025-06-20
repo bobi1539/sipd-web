@@ -98,7 +98,7 @@ export default function BasicSalary() {
                     {isLoading ? (
                         <LoadingTable colSpan={tableHeads.length} />
                     ) : (
-                        basicSalaryPages?.data.map((basicSalary, index) => (
+                        basicSalaryPages?.content.map((basicSalary, index) => (
                             <tr key={basicSalary.id} className="border-b text-center">
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     {getItemNumber(currentPage, index)}
