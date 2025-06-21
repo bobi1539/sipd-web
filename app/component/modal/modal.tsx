@@ -1,8 +1,9 @@
 interface ModalProps {
-    title: string;
     children: React.ReactNode;
+    title?: string;
     closeModal: () => void;
     className?: string;
+    isLoading?: boolean;
 }
 
 export default function Modal(props: Readonly<ModalProps>) {
@@ -11,7 +12,7 @@ export default function Modal(props: Readonly<ModalProps>) {
             <div className={`${props.className} relative w-full max-h-full p-4 bg-white rounded-lg shadow m-4 overflow-y-auto`}>
                 <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b">
                     <h3 className="text-lg font-semibold text-gray-900 capitalize">{props.title}</h3>
-                    <button onClick={props.closeModal} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-2 ml-auto inline-flex justify-center items-center w-7 h-7">
+                    <button onClick={props.closeModal} disabled={props.isLoading} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-2 ml-auto inline-flex justify-center items-center w-7 h-7">
                         <i className="fa-solid fa-xmark fa-lg"></i>
                         <span className="sr-only">Close modal</span>
                     </button>

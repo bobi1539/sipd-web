@@ -10,10 +10,10 @@ interface ModalDeleteProps {
 
 export default function ModalDelete(props: Readonly<ModalDeleteProps>) {
     return (
-        <Modal title="" closeModal={props.handleCancel} className="max-w-md">
+        <Modal closeModal={props.handleCancel} className="max-w-md" isLoading={props.isLoading}>
             <div>
                 <div className="flex flex-col items-center">
-                    <i className="fa-regular fa-circle-question  text-orange-200 text-7xl" />
+                    <i className="fa-regular fa-circle-question  text-green-700 text-7xl" />
                     <h1 className="font-bold text-xl text-gray-600 mt-4">Apakah anda yakin menghapus data ini ?</h1>
                     <h1 className="text-sm text-gray-500">Data yang sudah dihapus tidak dapat dikembalikan!</h1>
                 </div>

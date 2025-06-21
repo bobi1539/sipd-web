@@ -28,6 +28,7 @@ export const ICON_EDIT: string = "fa-solid fa-pen-to-square";
 export const ICON_DELETE: string = "fa-solid fa-trash-can";
 export const ICON_SAVE: string = "fa-solid fa-floppy-disk";
 export const ICON_MONEY: string = "fa-solid fa-money-bill";
+export const ICON_LOGIN: string = "fa-solid fa-right-to-bracket";
 export const ICON_CREDIT_CARD: string = "fa-solid fa-credit-card";
 export const POSITION_ID_PARAM: string = "positionId";
 export const POSITION_ID_SEARCH_PARAM: string = "?positionId=";

@@ -46,7 +46,7 @@ export default function CreateOrUpdateBudget(props: Readonly<CreateOrUpdateBudge
     };
 
     return (
-        <Modal title={props.title} closeModal={props.closeModal} className="max-w-lg">
+        <Modal title={props.title} closeModal={props.closeModal} className="max-w-lg" isLoading={props.isSaveLoading}>
             {props.isFormLoading ? (
                 <div className="h-32 flex justify-center items-center">
                     <Spinner />

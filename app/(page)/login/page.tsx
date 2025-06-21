@@ -9,7 +9,7 @@ import { apiLogin } from "@/app/api/auth";
 import { redirect, useRouter } from "next/navigation";
 import { FE_DASHBOARD } from "@/app/constant/endpoint-fe";
 import { getCookie, setCookieLogin } from "@/app/util/cookie";
-import { COOKIE_JWT_TOKEN, INPUT_PASSWORD, INPUT_EMAIL } from "@/app/constant/general";
+import { COOKIE_JWT_TOKEN, INPUT_PASSWORD, INPUT_EMAIL, ICON_LOGIN } from "@/app/constant/general";
 import { buildLoginRequest } from "@/app/dto/request/login-request";
 import Spinner from "@/app/component/spinner/spinner";
 
@@ -69,7 +69,7 @@ export default function Login() {
                         <form onSubmit={submitLogin} className="flex flex-col gap-4">
                             <InputLabel label="Email" name={INPUT_EMAIL} type="email" required={true} />
                             <InputLabel label="Password" name={INPUT_PASSWORD} type="password" placeHolder="••••••••" required={true} />
-                            {isLoading ? <ButtonLoading text="Proses Login..." className="mt-2" /> : <ButtonIcon type="submit" icon="fa-solid fa-right-to-bracket" text="Masuk" className="mt-2 py-2.5" />}
+                            {isLoading ? <ButtonLoading text="Masuk" /> : <ButtonIcon type="submit" icon={ICON_LOGIN} text="Masuk" />}
                         </form>
                     </div>
                 </div>
