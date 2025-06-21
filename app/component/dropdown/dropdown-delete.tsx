@@ -1,5 +1,6 @@
-import { ICON_DELETE, TEXT_COLOR_DELETE, TEXT_DELETE } from "@/app/constant/general";
+import { TEXT_COLOR_DELETE, TEXT_DELETE } from "@/app/constant/general";
 import CustomDropdownItem from "./custom-dropdown-item";
+import { ICON_DELETE } from "@/app/constant/icon";
 
 interface DropdownDeleteProps {
     onClick: () => void;

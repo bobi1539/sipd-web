@@ -1,6 +1,7 @@
 "use client";
 
-import { FE_BUDGET } from "@/app/constant/endpoint-fe";
+import { FE_BUDGET, FE_BUSINESS_TRIP } from "@/app/constant/endpoint-fe";
+import { ICON_BUDGET, ICON_BUSINESS_TRIP } from "@/app/constant/icon";
 import { MenuResponse } from "@/app/dto/response/menu-response";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -64,8 +65,16 @@ export default function OfficeSidebar(props: Readonly<OfficeSidebarProps>) {
                 id: 3,
                 name: "Anggaran",
                 route: FE_BUDGET,
-                icon: "fa-solid fa-gear",
-                sequence: 1,
+                icon: ICON_BUDGET,
+                sequence: 3,
+                subMenus: [],
+            },
+            {
+                id: 4,
+                name: "Perjalanan Dinas",
+                route: FE_BUSINESS_TRIP,
+                icon: ICON_BUSINESS_TRIP,
+                sequence: 4,
                 subMenus: [],
             },
         ];

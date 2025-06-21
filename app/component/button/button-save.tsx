@@ -1,4 +1,4 @@
-import { ICON_SAVE } from "@/app/constant/general";
+import { ICON_SAVE } from "@/app/constant/icon";
 import ButtonIcon from "./button-icon";
 
 export default function ButtonSave() {

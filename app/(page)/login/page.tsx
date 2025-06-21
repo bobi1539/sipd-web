@@ -9,9 +9,10 @@ import { apiLogin } from "@/app/api/auth";
 import { redirect, useRouter } from "next/navigation";
 import { FE_DASHBOARD } from "@/app/constant/endpoint-fe";
 import { getCookie, setCookieLogin } from "@/app/util/cookie";
-import { COOKIE_JWT_TOKEN, INPUT_PASSWORD, INPUT_EMAIL, ICON_LOGIN } from "@/app/constant/general";
+import { COOKIE_JWT_TOKEN, INPUT_PASSWORD, INPUT_EMAIL } from "@/app/constant/general";
 import { buildLoginRequest } from "@/app/dto/request/login-request";
 import Spinner from "@/app/component/spinner/spinner";
+import { ICON_LOGIN } from "@/app/constant/icon";
 
 export default function Login() {
     const [isLoading, setIsLoading] = useState<boolean>(false);

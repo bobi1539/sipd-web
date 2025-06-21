@@ -1,5 +1,6 @@
-import { ICON_EDIT, TEXT_COLOR_EDIT, TEXT_EDIT } from "@/app/constant/general";
+import { TEXT_COLOR_EDIT, TEXT_EDIT } from "@/app/constant/general";
 import CustomDropdownItem from "./custom-dropdown-item";
+import { ICON_EDIT } from "@/app/constant/icon";
 
 interface DropdownEditProps {
     onClick: () => void;

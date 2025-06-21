@@ -6,3 +6,4 @@ export const FE_POSITION: string = FE_OFFICE + "/setting-hr/position";
 export const FE_BASIC_SALARY: string = FE_POSITION + "/basic-salary";
 export const FE_ALLOWANCE: string = FE_POSITION + "/allowance";
 export const FE_BUDGET: string = FE_OFFICE + "/budget";
+export const FE_BUSINESS_TRIP: string = FE_OFFICE + "/business-trip";

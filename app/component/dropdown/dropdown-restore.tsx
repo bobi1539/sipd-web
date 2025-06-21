@@ -1,5 +1,6 @@
-import { ICON_RESTORE, TEXT_COLOR_RESTORE, TEXT_RESTORE } from "@/app/constant/general";
+import { TEXT_COLOR_RESTORE, TEXT_RESTORE } from "@/app/constant/general";
 import CustomDropdownItem from "./custom-dropdown-item";
+import { ICON_RESTORE } from "@/app/constant/icon";
 
 interface DropdownRestoreProps {
     onClick: () => void;

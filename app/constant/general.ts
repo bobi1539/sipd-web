@@ -26,13 +26,7 @@ export const TEXT_DELETE: string = "Hapus";
 export const TEXT_RESTORE: string = "Restore";
 export const TEXT_SALARY: string = "Gaji";
 export const TEXT_ALLOWANCE: string = "Tunjangan";
-export const ICON_EDIT: string = "fa-solid fa-pen-to-square";
-export const ICON_DELETE: string = "fa-solid fa-trash-can";
-export const ICON_RESTORE: string = "fa-solid fa-trash-can-arrow-up";
-export const ICON_SAVE: string = "fa-solid fa-floppy-disk";
-export const ICON_MONEY: string = "fa-solid fa-money-bill";
-export const ICON_LOGIN: string = "fa-solid fa-right-to-bracket";
-export const ICON_CREDIT_CARD: string = "fa-solid fa-credit-card";
+
 export const POSITION_ID_PARAM: string = "positionId";
 export const POSITION_ID_SEARCH_PARAM: string = "?positionId=";
 export const INPUT_NAME: string = "input-name";
