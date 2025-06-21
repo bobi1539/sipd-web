@@ -46,7 +46,7 @@ export default function Budget() {
     }, [fetchApiFindAllPaginationBudget]);
 
     const handlePageChange = (page: number): void => {
-        setCurrentPage(page);
+        setCurrentPage(page - 1);
     };
 
     const handleEditBudget = (id: number): void => {
