@@ -1,5 +1,4 @@
 "use client";
-
 import ButtonIcon from "@/app/component/button/button-icon";
 import InputSearch from "@/app/component/input/input-search";
 import LoadingTable from "@/app/component/table/loading-table";

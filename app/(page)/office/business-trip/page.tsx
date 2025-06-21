@@ -18,6 +18,8 @@ import { DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE } from "@/app/constant/general";
 import DropdownRestore from "@/app/component/dropdown/dropdown-restore";
 import { BusinessTripSimpleResponse } from "@/app/dto/response/business-trip-simple-response";
 import { apiFindAllPaginationBusinessTrip } from "@/app/api/business-trip";
+import DeleteBusinessTrip from "./delete";
+import RestoreBusinessTrip from "./restore";
 
 export default function BusinessTrip() {
     const [businessTrips, setBusinessTrips] = useState<PaginationResponse<BusinessTripSimpleResponse>>();
@@ -42,23 +44,21 @@ export default function BusinessTrip() {
         setCurrentPage(page - 1);
     };
 
-    const handleEditBudget = (id: number): void => {
+    const handleEditBusinessTrip = (id: number): void => {
         setBusinessTripId(id);
     };
 
-    const handleDeleteBudget = async (id: number): Promise<void> => {
+    const handleDeleteBusinessTrip = async (id: number): Promise<void> => {
         setIsModalDeleteOpen(true);
         setBusinessTripId(id);
     };
 
-    const handleRestoreBudget = async (id: number): Promise<void> => {
+    const handleRestoreBusinessTrip = async (id: number): Promise<void> => {
         setIsModalRestoreOpen(true);
         setBusinessTripId(id);
     };
 
     const handleCloseModal = (): void => {
-        setIsModalCreateOpen(false);
-        setIsModalUpdateOpen(false);
         setIsModalDeleteOpen(false);
         setIsModalRestoreOpen(false);
     };
@@ -110,8 +110,8 @@ export default function BusinessTrip() {
                                 <td scope="row" className="px-2 py-1 whitespace-nowrap">
                                     <CustomDropdown>
                                         <>
-                                            {businessTrip.deleted ? <DropdownRestore onClick={() => handleRestoreBudget(businessTrip.id)} /> : <DropdownEdit onClick={() => handleEditBudget(businessTrip.id)} />}
-                                            <DropdownDelete onClick={() => handleDeleteBudget(businessTrip.id)} />
+                                            {businessTrip.deleted ? <DropdownRestore onClick={() => handleRestoreBusinessTrip(businessTrip.id)} /> : <DropdownEdit onClick={() => handleEditBusinessTrip(businessTrip.id)} />}
+                                            <DropdownDelete onClick={() => handleDeleteBusinessTrip(businessTrip.id)} />
                                         </>
                                     </CustomDropdown>
                                 </td>
@@ -120,10 +120,8 @@ export default function BusinessTrip() {
                     )}
                 </CustomTable>
                 <FooterTable totalItem={businessTrips?.totalElements ?? 0} totalPage={businessTrips?.totalPages ?? 0} handlePageChange={handlePageChange} />
-                {/* {isModalCreateOpen && <CreateBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} />}
-                {isModalUpdateOpen && <UpdateBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} id={budgetId} />}
-                {isModalDeleteOpen && <DeleteBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} id={budgetId} />}
-                {isModalRestoreOpen && <RestoreBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} id={budgetId} />} */}
+                {isModalDeleteOpen && <DeleteBusinessTrip closeModal={handleCloseModal} fetchApiFindAllPaginationBusinessTrip={fetchApiFindAllPaginationBusinessTrip} id={businessTripId} />}
+                {isModalRestoreOpen && <RestoreBusinessTrip closeModal={handleCloseModal} fetchApiFindAllPaginationBusinessTrip={fetchApiFindAllPaginationBusinessTrip} id={businessTripId} />}
             </section>
         </div>
     );
