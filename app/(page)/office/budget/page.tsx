@@ -21,12 +21,15 @@ import { formatNumberToRupiah } from "@/app/helper/currency-helper";
 import CreateBudget from "./create";
 import UpdateBudget from "./update";
 import DeleteBudget from "./delete";
+import DropdownRestore from "@/app/component/dropdown/dropdown-restore";
+import RestoreBudget from "./restore";
 
 export default function Budget() {
     const [budgets, setBudgets] = useState<PaginationResponse<BudgetResponse>>();
     const [isModalCreateOpen, setIsModalCreateOpen] = useState<boolean>(false);
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState<boolean>(false);
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState<boolean>(false);
+    const [isModalRestoreOpen, setIsModalRestoreOpen] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>("");
     const [currentPage, setCurrentPage] = useState<number>(DEFAULT_PAGE_NUMBER);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -56,10 +59,16 @@ export default function Budget() {
         setBudgetId(id);
     };
 
+    const handleRestoreBudget = async (id: number): Promise<void> => {
+        setIsModalRestoreOpen(true);
+        setBudgetId(id);
+    };
+
     const handleCloseModal = (): void => {
         setIsModalCreateOpen(false);
         setIsModalUpdateOpen(false);
         setIsModalDeleteOpen(false);
+        setIsModalRestoreOpen(false);
     };
 
     const tableHeads: CustomTableHead[] = [
@@ -113,7 +122,7 @@ export default function Budget() {
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     <CustomDropdown>
                                         <>
-                                            {budget.deleted ? "" : <DropdownEdit onClick={() => handleEditBudget(budget.id)} />}
+                                            {budget.deleted ? <DropdownRestore onClick={() => handleRestoreBudget(budget.id)} /> : <DropdownEdit onClick={() => handleEditBudget(budget.id)} />}
                                             <DropdownDelete onClick={() => handleDeleteBudget(budget.id)} />
                                         </>
                                     </CustomDropdown>
@@ -126,6 +135,7 @@ export default function Budget() {
                 {isModalCreateOpen && <CreateBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} />}
                 {isModalUpdateOpen && <UpdateBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} id={budgetId} />}
                 {isModalDeleteOpen && <DeleteBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} id={budgetId} />}
+                {isModalRestoreOpen && <RestoreBudget closeModal={handleCloseModal} fetchApiFindAllPaginationBudget={fetchApiFindAllPaginationBudget} id={budgetId} />}
             </section>
         </div>
     );
