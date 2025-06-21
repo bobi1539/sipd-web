@@ -1,5 +1,4 @@
 "use client";
-
 import ButtonLoadingSave from "@/app/component/button/button-loading-save";
 import ButtonSave from "@/app/component/button/button-save";
 import InputLabel from "@/app/component/input/input-label";
@@ -11,7 +10,7 @@ import { formatNumber, removeNonDigit } from "@/app/util/helper";
 import { useEffect, useState } from "react";
 
 interface CreateOrUpdateBudgetProps {
-    isFormLoading:boolean;
+    isFormLoading: boolean;
     isSaveLoading: boolean;
     submit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
     closeModal: () => void;
@@ -50,7 +49,7 @@ export default function CreateOrUpdateBudget(props: Readonly<CreateOrUpdateBudge
         <Modal title={props.title} closeModal={props.closeModal} className="max-w-lg">
             {props.isFormLoading ? (
                 <div className="h-32 flex justify-center items-center">
-                    <Spinner/>
+                    <Spinner />
                 </div>
             ) : (
                 <form onSubmit={props.submit}>
