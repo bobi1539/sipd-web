@@ -8,6 +8,7 @@ interface InputSelectLabelProps {
     options: Option[];
     option?: Option;
     required?: boolean;
+    onChange?: (option: Option | null) => void;
     onInputChange?: (inputValue: string) => void;
 }
 
@@ -17,7 +18,7 @@ export default function InputSelectLabel(props: Readonly<InputSelectLabelProps>)
             <label htmlFor={props.name} className="block mb-1 text-sm font-medium text-gray-900 capitalize">
                 {props.label} {props.required ? <span className="text-red-500">*</span> : ""}
             </label>
-            <InputSelect placeholder={props.placeholder} name={props.name} options={props.options} option={props.option} padding="5.5px" onInputChange={props.onInputChange} required={props.required} />
+            <InputSelect placeholder={props.placeholder} name={props.name} options={props.options} option={props.option} padding="5.5px" onChange={props.onChange} onInputChange={props.onInputChange} required={props.required} />
         </div>
     );
 }
