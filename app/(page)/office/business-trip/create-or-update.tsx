@@ -9,12 +9,16 @@ import TextArea from "@/app/component/input/text-area";
 import Spinner from "@/app/component/spinner/spinner";
 import ContentTitle from "@/app/component/text/content-title";
 import { FE_BUSINESS_TRIP } from "@/app/constant/endpoint-fe";
-import { INPUT_BUSINESS_TRIP_PARTICIPANT, INPUT_BUSINESS_TRIP_PARTICIPANT_TYPE, INPUT_BUSINESS_TRIP_PURPOSE, INPUT_BUSINESS_TRIP_TYPE } from "@/app/constant/general";
+import { DEFAULT_PAGE_NUMBER, INPUT_BUSINESS_TRIP_PARTICIPANT, INPUT_BUSINESS_TRIP_PARTICIPANT_TYPE, INPUT_BUSINESS_TRIP_PURPOSE, INPUT_BUSINESS_TRIP_TYPE } from "@/app/constant/general";
 import { ICON_PLUS } from "@/app/constant/icon";
 import { BusinessTripDetailResponse } from "@/app/dto/response/business-trip-detail-response";
 import { BusinessTripOptionsResponse } from "@/app/dto/response/business-trip-options-response";
 import { useCallback, useEffect, useState } from "react";
 import ParticipantModal from "./participant/particpant-modal";
+import { apiFindAllPaginationCity } from "@/app/api/city";
+import { buildSearch } from "@/app/dto/dto/search";
+import { Option } from "@/app/dto/dto/input-select-option";
+import { citiesResponseToOptions } from "@/app/dto/response/city-response";
 
 interface CreateOrUpdateBusinessTripProps {
     title: string;
@@ -28,6 +32,8 @@ export default function CreateOrUpdateBusinessTrip(props: Readonly<CreateOrUpdat
     const [isFormLoading, setIsFormLoading] = useState<boolean>(props.isFormLoading);
     const [businessTripOptions, setBusinessTripOptions] = useState<BusinessTripOptionsResponse>();
     const [isModalAddParticipantOpen, setIsModalAddParticipantOpen] = useState<boolean>(false);
+    const [cityOptions, setCityOptions] = useState<Option[]>([]);
+    const [inputCity, setInputCity] = useState<string>("");
 
     const fetchApiMetadataBusinessTrip = useCallback(async (): Promise<void> => {
         setIsFormLoading(true);
@@ -35,9 +41,21 @@ export default function CreateOrUpdateBusinessTrip(props: Readonly<CreateOrUpdat
         setIsFormLoading(false);
     }, []);
 
+    const fetchApiCity = useCallback(async (): Promise<void> => {
+        await apiFindAllPaginationCity(buildSearch(inputCity, null, DEFAULT_PAGE_NUMBER, 20)).then((response) => setCityOptions(citiesResponseToOptions(response.content)));
+    }, [inputCity]);
+
     useEffect(() => {
         fetchApiMetadataBusinessTrip();
     }, [fetchApiMetadataBusinessTrip]);
+
+    useEffect(() => {
+        fetchApiCity();
+    }, [fetchApiCity]);
+
+    const handleInputCityChange = (value: string): void => {
+        setInputCity(value);
+    };
 
     const handleClickAddParticipant = (): void => {
         setIsModalAddParticipantOpen(true);
@@ -65,7 +83,24 @@ export default function CreateOrUpdateBusinessTrip(props: Readonly<CreateOrUpdat
                                     <TextArea label="Maksud Perjalanan Dinas" name={INPUT_BUSINESS_TRIP_PURPOSE} />
                                 </div>
                             </div>
-                            <div></div>
+                            <div className="bg-white p-4 rounded-lg shadow-md">
+                                <h1 className="font-bold text-xl">Tujuan Perjalanan Dinas</h1>
+                                <h1>Perjalanan 1</h1>
+                                <div className="grid grid-cols-2 gap-2 my-4">
+                                    <InputSelectLabel label="Tempat Keberangkatan" name={"test1"} options={cityOptions} onInputChange={handleInputCityChange} required />
+                                    <InputSelectLabel label="Tempat Tujuan" name={"test1"} options={cityOptions} onInputChange={handleInputCityChange} required />
+                                    <InputLabel label="Tanggal Keberangkatan" name={"t1"} type="date" required={true} />
+                                    <InputSelectLabel label="Transportasi" name={"transportasi"} options={businessTripOptions?.transportationModes ?? []} required />
+                                </div>
+                                <div className="h-2"></div>
+                                <h1>Perjalanan Pulang</h1>
+                                <div className="grid grid-cols-2 gap-2 my-4">
+                                    <InputLabel label="Tempat Tujuan Terakhir" name={"t4"} type="text" required={true} disabled />
+                                    <InputLabel label="Tempat Kepulangan" name={"t5"} type="text" required={true} disabled />
+                                    <InputLabel label="Tanggal Kepulangan" name={"t1"} type="date" required={true} />
+                                    <InputSelectLabel label="Transportasi" name={"transportasi"} options={businessTripOptions?.transportationModes ?? []} required />
+                                </div>
+                            </div>
                             <div className="bg-white p-4 rounded-lg shadow-md">
                                 <h1 className="font-bold text-xl">Peserta Perjalanan Dinas</h1>
                                 <div className="my-4 grid grid-cols-1 gap-2">

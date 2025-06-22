@@ -10,3 +10,4 @@ export const BE_ALLOWANCE: string = BE_BASE + "/allowances";
 export const BE_EMPLOYEE: string = BE_BASE + "/employees";
 export const BE_BUDGET: string = BE_BASE + "/budgets";
 export const BE_BUSINESS_TRIP: string = BE_BASE + "/business-trips";
+export const BE_CITY: string = BE_BASE + "/cities";

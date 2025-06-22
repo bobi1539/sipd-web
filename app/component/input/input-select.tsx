@@ -11,7 +11,9 @@ interface InputSelectProps {
     option?: Option;
     padding?: string;
     required?: boolean;
+    isDisabled?: boolean;
     onChange?: (option: Option | null) => void;
+    onInputChange?: (inputValue: string) => void;
 }
 
 export default function InputSelect(props: Readonly<InputSelectProps>) {
@@ -38,17 +40,23 @@ export default function InputSelect(props: Readonly<InputSelectProps>) {
             options={props.options}
             menuPortalTarget={document.body}
             required={props.required}
+            isDisabled={props.isDisabled}
+            onInputChange={(value) => {
+                if (props.onInputChange) {
+                    props.onInputChange(value);
+                }
+            }}
             styles={{
                 control: (baseStyles, state) => ({
                     ...baseStyles,
                     textTransform: "capitalize",
-                    borderColor: "#d1d5db",
+                    borderColor: state.isFocused ? "#ffffff" : "#d1d5db",
                     borderRadius: "0.5rem",
                     backgroundColor: "#f9fafb",
                     fontSize: "0.875rem",
                     boxShadow: state.isFocused ? "inset 0 0 0 2px #15803d" : "none",
                     "&:hover": {
-                        borderColor: "#d1d5db",
+                        borderColor: state.isFocused ? "#ffffff" : "#d1d5db",
                     },
                 }),
                 option: (baseStyles, state) => ({
