@@ -5,3 +5,4 @@ export const ICON_DELETE: string = "fa-solid fa-trash-can";
 export const ICON_RESTORE: string = "fa-solid fa-trash-can-arrow-up";
 export const ICON_SAVE: string = "fa-solid fa-floppy-disk";
 export const ICON_LOGIN: string = "fa-solid fa-right-to-bracket";
+export const ICON_PLUS: string = "fa-solid fa-plus";

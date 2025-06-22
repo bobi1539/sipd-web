@@ -23,6 +23,7 @@ import UpdateBudget from "./update";
 import DeleteBudget from "./delete";
 import DropdownRestore from "@/app/component/dropdown/dropdown-restore";
 import RestoreBudget from "./restore";
+import { ICON_PLUS } from "@/app/constant/icon";
 
 export default function Budget() {
     const [budgets, setBudgets] = useState<PaginationResponse<BudgetResponse>>();
@@ -89,7 +90,7 @@ export default function Budget() {
                 <ContentSearch>
                     <InputSearch onChange={(e) => setSearchValue(e.target.value)} />
                     <div className="flex justify-end">
-                        <ButtonIcon onClick={() => setIsModalCreateOpen(!isModalCreateOpen)} type="button" icon="fa-solid fa-plus" text="Tambah Data Anggaran" className="w-full md:w-auto" />
+                        <ButtonIcon onClick={() => setIsModalCreateOpen(!isModalCreateOpen)} type="button" icon={ICON_PLUS} text="Tambah Data Anggaran" className="w-full md:w-auto" />
                     </div>
                 </ContentSearch>
                 <CustomTable heads={tableHeads}>

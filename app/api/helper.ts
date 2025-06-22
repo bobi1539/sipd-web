@@ -1,6 +1,6 @@
 "use client";
 
-import { COOKIE_JWT_TOKEN, HTTP_CODE_UNAUTHORIZED, PAGE, PAGE_NUMBER, PAGE_SIZE, SEARCH, SIZE, VALUE } from "../constant/general";
+import { COOKIE_JWT_TOKEN, HTTP_CODE_UNAUTHORIZED, IS_DELETED, PAGE, PAGE_NUMBER, PAGE_SIZE, SEARCH, SIZE, VALUE } from "../constant/general";
 import { SESSION_EXPIRED } from "../constant/message";
 import { Pagination } from "../dto/dto/pagination";
 import { Search } from "../dto/dto/search";
@@ -142,6 +142,9 @@ export const getUrlFindAll = (endpoint: string, search: Search): string => {
     const url = new URL(endpoint);
     if (search?.value) {
         url.searchParams.append(VALUE, search.value);
+    }
+    if (search?.isDeleted) {
+        url.searchParams.append(IS_DELETED, String(search.isDeleted));
     }
     if (search?.page) {
         url.searchParams.append(PAGE, search.page.toString());

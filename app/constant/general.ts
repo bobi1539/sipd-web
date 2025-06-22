@@ -53,4 +53,6 @@ export const INPUT_PRICE: string = "input-price";
 export const INPUT_QUANTITY: string = "input-quantity";
 export const INPUT_TOTAL: string = "input-total";
 export const INPUT_BUSINESS_TRIP_TYPE: string = "input-business-trip-type";
+export const INPUT_BUSINESS_TRIP_PARTICIPANT_TYPE: string = "input-business-trip-participant-type";
 export const INPUT_BUSINESS_TRIP_PURPOSE: string = "input-business-trip-purpose";
+export const INPUT_BUSINESS_TRIP_PARTICIPANT: string = "input-business-trip-participant";

@@ -22,6 +22,7 @@ import DeleteBusinessTrip from "./delete";
 import RestoreBusinessTrip from "./restore";
 import { useRouter } from "next/navigation";
 import { FE_BUSINESS_TRIP_CREATE } from "@/app/constant/endpoint-fe";
+import { ICON_PLUS } from "@/app/constant/icon";
 
 export default function BusinessTrip() {
     const [businessTrips, setBusinessTrips] = useState<PaginationResponse<BusinessTripSimpleResponse>>();
@@ -87,7 +88,7 @@ export default function BusinessTrip() {
                 <ContentSearch>
                     <InputSearch onChange={(e) => setSearchValue(e.target.value)} />
                     <div className="flex justify-end">
-                        <ButtonIcon onClick={handleCreateBusinessTrip} type="button" icon="fa-solid fa-plus" text="Ajukan Perjalanan Dinas" className="w-full md:w-auto" />
+                        <ButtonIcon onClick={handleCreateBusinessTrip} type="button" icon={ICON_PLUS} text="Ajukan Perjalanan Dinas" className="w-full md:w-auto" />
                     </div>
                 </ContentSearch>
                 <CustomTable heads={tableHeads}>
