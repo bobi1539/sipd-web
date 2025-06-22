@@ -10,7 +10,7 @@ import { PaginationResponse } from "@/app/dto/response/pagination-response";
 import { useCallback, useEffect, useState } from "react";
 import FooterTable from "@/app/component/table/footer-table";
 import CustomDropdown from "@/app/component/dropdown/custom-dropdown";
-import DropdownEdit from "@/app/component/dropdown/dropdown-edit";
+import DropdownUpdate from "@/app/component/dropdown/dropdown-update";
 import DropdownDelete from "@/app/component/dropdown/dropdown-delete";
 import { formatNumber, getItemNumber } from "@/app/util/helper";
 import { CustomTableHead } from "@/app/dto/dto/custom-table-head";
@@ -49,7 +49,7 @@ export default function Budget() {
         setCurrentPage(page - 1);
     };
 
-    const handleEditBudget = (id: number): void => {
+    const handleUpdateBudget = (id: number): void => {
         setIsModalUpdateOpen(true);
         setBudgetId(id);
     };
@@ -122,7 +122,7 @@ export default function Budget() {
                                 <td scope="row" className="px-2 py-1 whitespace-nowrap">
                                     <CustomDropdown>
                                         <>
-                                            {budget.deleted ? <DropdownRestore onClick={() => handleRestoreBudget(budget.id)} /> : <DropdownEdit onClick={() => handleEditBudget(budget.id)} />}
+                                            {budget.deleted ? <DropdownRestore onClick={() => handleRestoreBudget(budget.id)} /> : <DropdownUpdate onClick={() => handleUpdateBudget(budget.id)} />}
                                             <DropdownDelete onClick={() => handleDeleteBudget(budget.id)} />
                                         </>
                                     </CustomDropdown>

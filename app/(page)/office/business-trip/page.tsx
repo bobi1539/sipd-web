@@ -10,7 +10,7 @@ import { PaginationResponse } from "@/app/dto/response/pagination-response";
 import { useCallback, useEffect, useState } from "react";
 import FooterTable from "@/app/component/table/footer-table";
 import CustomDropdown from "@/app/component/dropdown/custom-dropdown";
-import DropdownEdit from "@/app/component/dropdown/dropdown-edit";
+import DropdownUpdate from "@/app/component/dropdown/dropdown-update";
 import DropdownDelete from "@/app/component/dropdown/dropdown-delete";
 import { getItemNumber } from "@/app/util/helper";
 import { CustomTableHead } from "@/app/dto/dto/custom-table-head";
@@ -20,6 +20,8 @@ import { BusinessTripSimpleResponse } from "@/app/dto/response/business-trip-sim
 import { apiFindAllPaginationBusinessTrip } from "@/app/api/business-trip";
 import DeleteBusinessTrip from "./delete";
 import RestoreBusinessTrip from "./restore";
+import { useRouter } from "next/navigation";
+import { FE_BUSINESS_TRIP_CREATE } from "@/app/constant/endpoint-fe";
 
 export default function BusinessTrip() {
     const [businessTrips, setBusinessTrips] = useState<PaginationResponse<BusinessTripSimpleResponse>>();
@@ -29,6 +31,7 @@ export default function BusinessTrip() {
     const [currentPage, setCurrentPage] = useState<number>(DEFAULT_PAGE_NUMBER);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [businessTripId, setBusinessTripId] = useState<number>(0);
+    const router = useRouter();
 
     const fetchApiFindAllPaginationBusinessTrip = useCallback(async (): Promise<void> => {
         setIsLoading(true);
@@ -44,7 +47,11 @@ export default function BusinessTrip() {
         setCurrentPage(page - 1);
     };
 
-    const handleEditBusinessTrip = (id: number): void => {
+    const handleCreateBusinessTrip = (): void => {
+        router.push(FE_BUSINESS_TRIP_CREATE);
+    };
+
+    const handleUpdateBusinessTrip = (id: number): void => {
         setBusinessTripId(id);
     };
 
@@ -80,7 +87,7 @@ export default function BusinessTrip() {
                 <ContentSearch>
                     <InputSearch onChange={(e) => setSearchValue(e.target.value)} />
                     <div className="flex justify-end">
-                        <ButtonIcon onClick={() => console.log("hello")} type="button" icon="fa-solid fa-plus" text="Ajukan Perjalanan Dinas" className="w-full md:w-auto" />
+                        <ButtonIcon onClick={handleCreateBusinessTrip} type="button" icon="fa-solid fa-plus" text="Ajukan Perjalanan Dinas" className="w-full md:w-auto" />
                     </div>
                 </ContentSearch>
                 <CustomTable heads={tableHeads}>
@@ -110,7 +117,7 @@ export default function BusinessTrip() {
                                 <td scope="row" className="px-2 py-1 whitespace-nowrap">
                                     <CustomDropdown>
                                         <>
-                                            {businessTrip.deleted ? <DropdownRestore onClick={() => handleRestoreBusinessTrip(businessTrip.id)} /> : <DropdownEdit onClick={() => handleEditBusinessTrip(businessTrip.id)} />}
+                                            {businessTrip.deleted ? <DropdownRestore onClick={() => handleRestoreBusinessTrip(businessTrip.id)} /> : <DropdownUpdate onClick={() => handleUpdateBusinessTrip(businessTrip.id)} />}
                                             <DropdownDelete onClick={() => handleDeleteBusinessTrip(businessTrip.id)} />
                                         </>
                                     </CustomDropdown>

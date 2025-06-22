@@ -11,11 +11,11 @@ interface CreateBudgetProps {
 }
 
 export default function CreateBudget(props: Readonly<CreateBudgetProps>) {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isSaveLoading, setIsSaveLoading] = useState<boolean>(false);
 
     const submitCreateBudget = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         try {
-            setIsLoading(true);
+            setIsSaveLoading(true);
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
             const request = buildBudgetRequest(formData);
@@ -26,9 +26,9 @@ export default function CreateBudget(props: Readonly<CreateBudgetProps>) {
         } catch (error) {
             console.error(error);
         } finally {
-            setIsLoading(false);
+            setIsSaveLoading(false);
         }
     };
 
-    return <CreateOrUpdateBudget isFormLoading={false} isSaveLoading={isLoading} submit={submitCreateBudget} closeModal={props.closeModal} title="Tambah Data Anggaran" />;
+    return <CreateOrUpdateBudget isFormLoading={false} isSaveLoading={isSaveLoading} submit={submitCreateBudget} closeModal={props.closeModal} title="Tambah Data Anggaran" />;
 }

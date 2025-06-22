@@ -6,6 +6,6 @@ interface DropdownEditProps {
     onClick: () => void;
 }
 
-export default function DropdownEdit(props: Readonly<DropdownEditProps>) {
+export default function DropdownUpdate(props: Readonly<DropdownEditProps>) {
     return <CustomDropdownItem onClick={props.onClick} className={TEXT_COLOR_EDIT} icon={ICON_EDIT} text={TEXT_EDIT} />;
 }

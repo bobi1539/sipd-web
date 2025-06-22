@@ -29,6 +29,7 @@ export const TEXT_ALLOWANCE: string = "Tunjangan";
 
 export const POSITION_ID_PARAM: string = "positionId";
 export const POSITION_ID_SEARCH_PARAM: string = "?positionId=";
+
 export const INPUT_NAME: string = "input-name";
 export const INPUT_SALARY_AMOUNT: string = "salary-amount";
 export const INPUT_TOTAL_YEAR: string = "total-year";
@@ -51,3 +52,5 @@ export const INPUT_TOTAL_CHILD: string = "total-child";
 export const INPUT_PRICE: string = "input-price";
 export const INPUT_QUANTITY: string = "input-quantity";
 export const INPUT_TOTAL: string = "input-total";
+export const INPUT_BUSINESS_TRIP_TYPE: string = "input-business-trip-type";
+export const INPUT_BUSINESS_TRIP_PURPOSE: string = "input-business-trip-purpose";

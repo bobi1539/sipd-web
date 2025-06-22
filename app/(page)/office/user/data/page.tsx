@@ -4,7 +4,7 @@ import { apiUserDelete, apiUserFindAllPagination } from "@/app/api/user";
 import ButtonIcon from "@/app/component/button/button-icon";
 import CustomDropdown from "@/app/component/dropdown/custom-dropdown";
 import DropdownDelete from "@/app/component/dropdown/dropdown-delete";
-import DropdownEdit from "@/app/component/dropdown/dropdown-edit";
+import DropdownUpdate from "@/app/component/dropdown/dropdown-update";
 import InputSearch from "@/app/component/input/input-search";
 import CustomTable from "@/app/component/table/custom-table";
 import FooterTable from "@/app/component/table/footer-table";
@@ -105,7 +105,7 @@ export default function User() {
                                 <td scope="row" className="px-2.5 py-2 whitespace-nowrap">
                                     <CustomDropdown>
                                         <>
-                                            <DropdownEdit onClick={() => handleEditUser(user.id)} />
+                                            <DropdownUpdate onClick={() => handleEditUser(user.id)} />
                                             <DropdownDelete onClick={() => handleDeleteUser(user.id)} />
                                         </>
                                     </CustomDropdown>
